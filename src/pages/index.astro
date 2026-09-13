@@ -1,32 +1,577 @@
 ---
+/**
+ * Página principal: propuesta de rediseño de sandygarden.com con el estilo de la demo.
+ * Contenido tomado de la web actual de Sandy Garden; fotos de su sitio.
+ * Maqueta a todo el ancho: nada de columna central angosta ni cajas que encierren.
+ * La demo de la tarjeta de lealtad vive en /lealtad.
+ */
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import Experience from '../components/Experience.astro';
-import NextSteps from '../components/NextSteps.astro';
-import Footer from '../components/Footer.astro';
-import RewardOverlay from '../components/RewardOverlay.astro';
+
+const nav = [
+  ['Experiencias', '#experiencias'],
+  ['Para los papás', '#papas'],
+  ['Nosotros', '#firma'],
+  ['Visitanos', '#visitanos'],
+  ['Preguntas', '#faq'],
+];
+
+const facts = ['EDADES 0 A 9', 'ARENA CINÉTICA Y NATURAL CERTIFICADA', 'SESIONES DE 1 Y 2 HORAS', 'CAFÉ DE ESPECIALIDAD', 'WIFI RÁPIDO', 'AVENIDA ESCAZÚ', 'ABIERTO TODA LA SEMANA'];
+
+const stats = [
+  ['0 a 9', 'años. Menores de 12 meses con un adulto al lado.'],
+  ['1 y 2 h', 'de sesión. Cada familia elige su ritmo.'],
+  ['7 días', 'a la semana, con último ingreso a las 5:30 p. m.'],
+];
+
+const porque = [
+  { k: 'ESPACIO SEGURO', v: 'Materiales no tóxicos, supervisión y diseño pensado para edades de 0 a 9.' },
+  { k: 'DESARROLLO SENSORIAL', v: 'El juego con arena estimula motricidad, calma y creatividad.' },
+  { k: 'PARA LOS PAPÁS', v: 'Café de especialidad de cortesía durante el mes de apertura, WiFi rápido y rincones de trabajo.' },
+];
+
+const experiencias = [
+  { img: 'nino-jugando', t: 'Juego libre', p: 'Sesiones abiertas de arena sensorial, de una o dos horas. Dos opciones para que cada familia juegue a su ritmo.', tag: 'RESERVÁ HOY', rot: -3 },
+  { img: 'juguetes', t: 'Fiestas privadas', p: 'The Garden Party y The Sandy Experience: dos paquetes para celebrar en privado, con fotografía opcional.', tag: 'COTIZÁ TU EVENTO', rot: 2 },
+  { img: 'bebe-puente', t: 'Sesiones terapéuticas', p: 'Guiadas por profesionales invitadas para enriquecer el juego sensorial, la creatividad y el bienestar.', tag: 'PRÓXIMAMENTE', rot: -2 },
+  { img: 'nina-tobogan', t: 'Membresías', p: 'Tres planes para hacer de Sandy Garden parte de la rutina, semana a semana, mes a mes.', tag: 'LISTA DE ESPERA', rot: 3 },
+];
+
+const papas = [
+  { t: 'Café de especialidad', p: 'Granos de tueste local, leches alternativas y opciones sin azúcar.' },
+  { t: 'WiFi de alta velocidad', p: 'Fibra dedicada y enchufes en cada mesa para llamadas y videollamadas.' },
+  { t: 'Espacio de trabajo', p: 'Mesas amplias, asientos cómodos y vista directa al área sensorial.' },
+];
+
+const testimonios = [
+  { q: 'Mi hijo no quería irse. Y yo trabajé tranquila por dos horas con un café excelente.', a: 'Andrea M.', rot: -2 },
+  { q: 'El espacio es precioso, todo cuidado al detalle. Volvemos cada semana.', a: 'Luis R.', rot: 1.5 },
+  { q: 'La fiesta de cumpleaños fue mágica. Los papás también la disfrutamos.', a: 'María C.', rot: -1 },
+];
+
+const faq = [
+  ['¿Necesito reservar con anticipación?', 'Sí, te recomendamos reservar al menos 24 horas antes, especialmente los fines de semana.'],
+  ['¿Para qué edades es Sandy Garden?', 'Recibimos niños de 0 a 9 años. Menores de 12 meses bajo supervisión total de un adulto.'],
+  ['¿Cuál es la política de cancelación?', 'Podés cancelar sin costo hasta 12 horas antes. Después se cobra el 50% del valor reservado.'],
+  ['¿La arena es segura?', 'Usamos arena cinética y arena natural certificada, no tóxica, lavada y desinfectada periódicamente. Un laboratorio especializado verifica su limpieza y calidad.'],
+  ['¿Cómo reservo una fiesta privada?', 'Escribinos por WhatsApp o completá el formulario de Experiencias. Confirmamos en menos de 24 horas.'],
+  ['¿Puedo trabajar mientras los peques juegan?', 'Sí. Hay mesas amplias, enchufes en cada mesa y WiFi de fibra dedicada, con vista directa al área de arena.'],
+];
+
+const horario = [
+  ['LUNES A JUEVES', '11:30 a. m. – 6:30 p. m.'],
+  ['VIERNES A DOMINGO', '9:30 a. m. – 6:30 p. m.'],
+  ['ÚLTIMO INGRESO', 'Sesión de 2 h a las 4:30 p. m. · Sesión de 1 h a las 5:30 p. m.'],
+];
+
+const ig = ['nino-juguetes', 'nina-tobogan', 'bebe-puente', 'nino-pala', 'juguetes', 'pies'];
+
+const flor = `<svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="17"/><circle cx="30" cy="12" r="10"/><circle cx="30" cy="48" r="10"/><circle cx="12" cy="30" r="10"/><circle cx="48" cy="30" r="10"/><circle cx="17" cy="17" r="9"/><circle cx="43" cy="17" r="9"/><circle cx="17" cy="43" r="9"/><circle cx="43" cy="43" r="9"/></svg>`;
 ---
-<Layout
-  title="Sandy Garden · Tarjeta de Lealtad digital"
-  description="Demo interactiva de la tarjeta de lealtad digital de Sandy Garden: tarjeta con nombre en el celular, sellado desde recepción, premios e historial."
->
-  <Header />
-  <Hero />
-  <HowItWorks />
-  <Experience />
-  <NextSteps />
-  <Footer />
-  <RewardOverlay slot="overlay" />
+<Layout title="Sandy Garden · Propuesta de nueva web" description="Propuesta de rediseño de sandygarden.com y sistema de lealtad digital, por xnjaca.">
+  <a class="preview-note" href="https://xnjaca.com" target="_blank" rel="noopener">PROPUESTA DE REDISEÑO · XNJACA.COM</a>
+
+  <header class="topbar" id="top">
+    <a class="brand" href="#top" aria-label="Sandy Garden, inicio">
+      <img src="/img/mono-madera.png" alt="" width="52" height="34" />
+      <span>SANDY GARDEN</span>
+    </a>
+    <nav class="links" aria-label="Secciones">
+      {nav.map(([t, h]) => <a href={h}>{t}</a>)}
+    </nav>
+    <div class="actions">
+      <a class="btn small" href="#visitanos">Reservar</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="sheet">Menú</button>
+    </div>
+  </header>
+
+  <div class="sheet" id="sheet" hidden>
+    <button class="sheet-close" id="sheetClose" type="button" aria-label="Cerrar menú">✕</button>
+    <nav aria-label="Secciones">
+      {nav.map(([t, h]) => <a href={h} data-close>{t}</a>)}
+      <a href="#visitanos" data-close class="sheet-cta">Reservar una visita</a>
+    </nav>
+    <p>Avenida Escazú, torre AE 302 · +506 6217-8501</p>
+  </div>
+
+  <!-- Hero a todo el ancho: el logo se escribe en la arena de lado a lado; debajo, texto y postales en la misma pantalla -->
+  <section class="hero" id="inicio">
+    <div class="write">
+      <canvas id="heroSand" aria-label="El logo de Sandy Garden escrito con el dedo en la arena"></canvas>
+      <div class="sticker">
+        <Fragment set:html={flor} />
+        <span>Café de<br />cortesía<br /><small>MES DE APERTURA</small></span>
+      </div>
+      <button class="replay" id="replay" type="button">Escribirlo otra vez</button>
+    </div>
+    <div class="hero-row">
+      <div class="hero-copy">
+        <div class="eyebrow">NUEVO EN COSTA RICA · SENSORY PLAYGROUND</div>
+        <h1>Un lugar donde la imaginación <em>no tiene límites.</em></h1>
+        <p class="lede">Un playground de arena para niños de 0 a 9 años, en un espacio cálido y diseñado al detalle. Mientras los peques juegan, vos disfrutás café de especialidad, WiFi rápido y un rincón para trabajar.</p>
+        <div class="row">
+          <a class="btn" href="#visitanos">Reservar ahora</a>
+          <a class="textlink" href="#experiencias">Ver experiencias</a>
+        </div>
+      </div>
+      <div class="postales">
+        <figure style="--rot:-5deg"><img src="/img/site/hero-sandy-garden.jpg" alt="Tres niñas jugando en la arena" width="1600" height="1066" /><figcaption>JUEGO LIBRE</figcaption></figure>
+        <figure style="--rot:3deg"><img src="/img/site/nina-arena-cayendo.jpg" alt="Niña dejando caer arena de un balde" width="1066" height="1600" loading="lazy" /><figcaption>ARENA CINÉTICA</figcaption></figure>
+        <figure style="--rot:-2deg"><img src="/img/site/pies.jpg" alt="Pies descalzos sobre la arena" width="1067" height="1600" loading="lazy" /><figcaption>SIN ZAPATOS, SIN PRISA</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Datos rápidos">
+    <div class="track">
+      {[...facts, ...facts].map((f) => <span>{f}</span>)}
+    </div>
+  </div>
+
+  <section class="block que" id="que">
+    <div class="que-copy">
+      <div class="eyebrow">QUÉ ES SANDY GARDEN</div>
+      <h2>Un jardín de arena <em>para crecer jugando.</em></h2>
+      <p class="intro">Un sensory playground donde la arena, el juego libre y la creatividad invitan a explorar sin prisas. Un ambiente seguro, tranquilo y acogedor para toda la familia.</p>
+    </div>
+    <ul class="klist">
+      {porque.map((r) => <li><span class="k">{r.k}</span><span class="v">{r.v}</span></li>)}
+    </ul>
+    <div class="stats">
+      {stats.map(([n, t]) => <div class="stat"><b>{n}</b><span>{t}</span></div>)}
+    </div>
+  </section>
+
+  <section class="block" id="experiencias">
+    <div class="rake"></div>
+    <div class="head-row">
+      <div>
+        <div class="eyebrow">EXPERIENCIAS</div>
+        <h2>Cada visita, <em>una historia distinta.</em></h2>
+      </div>
+      <p class="head-note">Desde una mañana tranquila hasta una celebración inolvidable. Cada experiencia está diseñada para acompañar momentos.</p>
+    </div>
+    <div class="exps">
+      {experiencias.map((e) => (
+        <article class="exp" style={`--rot:${e.rot}deg`}>
+          <img src={`/img/site/${e.img}.jpg`} alt="" width="1067" height="1600" loading="lazy" />
+          <div class="exp-body">
+            <span class="tag">{e.tag}</span>
+            <h3>{e.t}</h3>
+            <p>{e.p}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="band wood" id="papas">
+    <div class="band-in wood-grid">
+      <div>
+        <div class="eyebrow light">PARA LOS PAPÁS</div>
+        <h2 class="on-wood">Mientras ellos juegan, <em>vos también disfrutás.</em></h2>
+        <p class="wood-p">Pensamos cada detalle para que los acompañantes encuentren un momento para respirar, trabajar o simplemente tomar un buen café.</p>
+      </div>
+      {papas.map((i, n) => (
+        <div class="wood-item">
+          <span class="num">{['UNO', 'DOS', 'TRES'][n]}</span>
+          <b>{i.t}</b>
+          <span>{i.p}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block firma" id="firma">
+    <figure class="firma-photo" style="--rot:-2deg"><img src="/img/site/pala-arena.jpg" alt="Mano de un niño rastrillando la arena" width="1067" height="1600" loading="lazy" /><figcaption>PALAS GRABADAS</figcaption></figure>
+    <div class="firma-copy">
+      <div class="eyebrow">NUESTRA FIRMA</div>
+      <blockquote class="carved">Desde la textura de la arena hasta nuestras palas grabadas, <em>todo está pensado para despertar los sentidos</em> y crear recuerdos que duran.</blockquote>
+    </div>
+    <div class="firma-side">
+      <p class="firma-p">Sandy Garden nace en Costa Rica con una idea simple: dar a los niños un lugar donde puedan ser, crear y descubrir sin pantallas y sin prisa. Y a los adultos, un espacio para pausar.</p>
+      <dl class="valores">
+        <dt>CUIDADO</dt><dd>Cada detalle pensado para que niños y familias se sientan en casa.</dd>
+        <dt>IMAGINACIÓN</dt><dd>El juego libre como motor de creatividad para toda la vida.</dd>
+        <dt>NATURALIDAD</dt><dd>Materiales nobles, colores cálidos y respeto por los ritmos de cada niño.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <a class="band sky loyal" id="lealtad" href="/lealtad">
+    <div class="band-in loyal-in">
+      <div class="loyal-stamps" aria-hidden="true">
+        {Array.from({ length: 8 }).map((_, i) => <i class={i < 7 ? 'on' : ''}></i>)}
+      </div>
+      <div class="loyal-copy">
+        <div class="eyebrow">TARJETA DE LEALTAD DIGITAL</div>
+        <b>A la octava visita, el juego libre va por cuenta de la casa.</b>
+      </div>
+      <span class="loyal-link">Vive en el celular de cada familia, con su nombre. Ver cómo funciona →</span>
+    </div>
+  </a>
+
+  <section class="block" id="familias">
+    <div class="rake"></div>
+    <div class="eyebrow">LO QUE DICEN LAS FAMILIAS</div>
+    <div class="quotes">
+      {testimonios.map((t) => (
+        <figure class="card" style={`--rot:${t.rot}deg`}>
+          <span class="stamp">SG</span>
+          <blockquote>“{t.q}”</blockquote>
+          <figcaption>{t.a}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="band sky" id="visitanos">
+    <div class="band-in visit-grid">
+      <div>
+        <div class="eyebrow">VISITANOS</div>
+        <h2>Avenida Escazú, <em>primer piso.</em></h2>
+        <p class="sky-p">Torre AE 302, diagonal al lobby de apartamentos. <a href="https://maps.google.com/?q=Avenida+Escaz%C3%BA+Torre+AE+302" target="_blank" rel="noopener">Cómo llegar</a></p>
+      </div>
+      <dl class="hours">
+        {horario.map(([d, h]) => <><dt>{d}</dt><dd>{h}</dd></>)}
+      </dl>
+      <div class="reserve">
+        <div class="eyebrow">RESERVÁ TU VISITA</div>
+        <p class="reserve-p">En menos de un minuto. Plazas limitadas por sesión.</p>
+        <div class="row">
+          <a class="btn" href="https://sandygarden.com/reservar" target="_blank" rel="noopener">Reservar ahora</a>
+          <a class="btn outline" href="https://wa.me/50662178501" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <p class="contact"><a href="mailto:info@sandygarden.com">info@sandygarden.com</a> · <a href="tel:+50662178501">+506 6217-8501</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="rake"></div>
+    <div class="head-row">
+      <div>
+        <div class="eyebrow">PREGUNTAS FRECUENTES</div>
+        <h2>Si no encontrás tu respuesta, <em>escribinos por WhatsApp.</em></h2>
+      </div>
+    </div>
+    <div class="faq">
+      {faq.map(([q, a]) => (
+        <details>
+          <summary>{q}</summary>
+          <p>{a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="block" id="comunidad">
+    <div class="rake"></div>
+    <div class="head-row">
+      <div>
+        <div class="eyebrow">COMUNIDAD</div>
+        <h2>Seguinos en <em>@sandygardencr</em></h2>
+      </div>
+    </div>
+    <div class="ig">
+      {ig.map((n, i) => <figure style={`--rot:${[-2, 1.5, -1, 2.5, -1.5, 2][i]}deg`}><img src={`/img/site/${n}.jpg`} alt="" width="1067" height="1600" loading="lazy" /></figure>)}
+    </div>
+  </section>
+
+  <footer class="band foot">
+    <div class="band-in foot-in">
+      <div class="foot-brand">
+        <img src="/img/site/logo-h-lino.png" alt="Sandy Garden · sensory playground" width="240" height="70" />
+        <p>Un lugar donde la imaginación no tiene límites. Espacio sensorial para niños en Costa Rica.</p>
+      </div>
+      <div>
+        <div class="eyebrow light">EXPLORÁ</div>
+        <ul><li><a href="#experiencias">Experiencias</a></li><li><a href="#experiencias">Membresías</a></li><li><a href="#experiencias">Fiestas privadas</a></li><li><a href="#papas">Para los papás</a></li><li><a href="#firma">Nosotros</a></li></ul>
+      </div>
+      <div>
+        <div class="eyebrow light">ANTES DE VENIR</div>
+        <ul><li><a href="https://sandygarden.com/reglas">Acuerdos de convivencia</a></li><li><a href="https://sandygarden.com/waiver">Firmar waiver</a></li><li><a href="/lealtad">Tarjeta de lealtad</a></li></ul>
+      </div>
+      <div>
+        <div class="eyebrow light">VISITANOS</div>
+        <p>Avenida Escazú, torre AE 302, primer piso.<br />Lun–Jue 11:30 a. m.–6:30 p. m.<br />Vie–Dom 9:30 a. m.–6:30 p. m.</p>
+        <p><a href="mailto:info@sandygarden.com">info@sandygarden.com</a><br /><a href="tel:+50662178501">+506 6217-8501</a></p>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Sandy Garden Costa Rica. Todos los derechos reservados.</span>
+        <span>Hecho con cariño en Costa Rica · Propuesta de rediseño por <a href="https://xnjaca.com">xnjaca</a></span>
+      </div>
+    </div>
+  </footer>
 </Layout>
 
 <script>
   import { initSand } from '../scripts/sand';
-  import { initTilt } from '../scripts/tilt';
-  import { initLoyalty } from '../scripts/loyalty';
+  import { createSandWriter } from '../scripts/sandWrite';
 
-  initSand(document.getElementById('sand') as HTMLCanvasElement, document.getElementById('hintSand'));
-  initTilt(document.getElementById('phoneCol')!, document.getElementById('phone')!);
-  initLoyalty();
+  initSand(document.getElementById('sand') as HTMLCanvasElement, null);
+
+  // El logo se escribe en la arena al entrar en pantalla; se repite al pedirlo.
+  const canvas = document.getElementById('heroSand') as HTMLCanvasElement;
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  createSandWriter(canvas, { logoSrc: '/img/logo-h-madera.png', fill: coarse ? 0.84 : 0.56 })
+    .then((writer) => {
+      let started = false;
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting && !started) { started = true; setTimeout(() => writer.start(), 350); io.disconnect(); } }, { threshold: 0.3 });
+      io.observe(canvas);
+      document.getElementById('replay')!.addEventListener('click', () => writer.start());
+    })
+    .catch(() => { canvas.hidden = true; });
+
+  // La barra se vuelve cápsula solo cuando deja la arena del hero
+  const topbar = document.getElementById('top')!;
+  const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+  // Menú móvil
+  const sheet = document.getElementById('sheet')!;
+  const menuBtn = document.getElementById('menuBtn')!;
+  let menuScroll = 0;
+  const setMenu = (open: boolean) => {
+    sheet.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    if (open) { menuScroll = window.scrollY; document.body.style.top = `-${menuScroll}px`; document.body.classList.add('locked'); }
+    else {
+      document.body.classList.remove('locked'); document.body.style.top = '';
+      const html = document.documentElement, prev = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto'; window.scrollTo(0, menuScroll); html.style.scrollBehavior = prev;
+    }
+  };
+  menuBtn.addEventListener('click', () => setMenu(sheet.hidden));
+  document.getElementById('sheetClose')!.addEventListener('click', () => setMenu(false));
+  sheet.querySelectorAll('[data-close]').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) setMenu(false); });
 </script>
+
+<style is:global>
+  /* Esta página usa todo el ancho: se anula la columna central del layout y el padding lateral del body. */
+  body { padding-inline: 0; padding-block: 0; }
+  .wrap { max-width: none; }
+  :root { --g: clamp(18px, 3.4vw, 64px); }
+</style>
+
+<style>
+  .eyebrow { color: var(--cocoa); font-size: 11px; }
+  .eyebrow.light { color: var(--madera); }
+  .btn { text-decoration: none; background: var(--wood); color: var(--lino); }
+  .btn:hover { background: var(--wood-deep); }
+  .btn.small { padding: 10px 18px; font-size: 14px; }
+  .btn.outline { background: transparent; color: var(--ink); border: 1.5px solid rgba(51,33,26,.4); }
+  .btn.outline:hover { background: rgba(255,255,255,.4); }
+  .textlink { font-weight: 600; color: var(--madera-deep); text-decoration: underline; text-underline-offset: 5px; padding: 12px 6px; }
+  h2 em, h1 em { font-style: italic; color: var(--madera-deep); }
+  .block { padding-inline: var(--g); }
+  .block .rake { margin-bottom: 26px; }
+  .head-row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px var(--g); align-items: end; margin-bottom: 8px; }
+  .head-note { margin: 0 0 14px; font-size: 16px; color: var(--cocoa); max-width: 34em; justify-self: end; }
+
+  .preview-note { position: fixed; left: 14px; bottom: 14px; z-index: 25; margin: 0; font-family: var(--hand); font-size: 9px; letter-spacing: .18em; color: rgba(251,241,229,.9); background: rgba(58,37,27,.92); border-radius: 999px; padding: 8px 12px; max-width: calc(100vw - 28px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: auto; text-decoration: none; }
+
+  /* Nav: transparente sobre la arena del hero, cápsula al hacer scroll */
+  .topbar { position: sticky; top: 12px; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 12px var(--g) -74px;
+    padding: 8px 8px 8px 20px; border-radius: 999px; background: transparent; transition: background .35s ease, box-shadow .35s ease; }
+  .topbar.scrolled { background: rgba(251,241,229,.9); box-shadow: 0 18px 40px -22px rgba(51,33,26,.55), 0 0 0 1px rgba(90,61,46,.12); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand img { height: 30px; width: auto; }
+  .brand span { font-family: var(--hand); font-size: 12px; letter-spacing: .18em; color: var(--cocoa); }
+  .links { display: flex; gap: clamp(14px, 2.2vw, 30px); }
+  .links a { font-size: 15px; font-weight: 500; color: var(--cocoa); text-decoration: none; padding: 8px 2px; border-bottom: 2px solid transparent; }
+  .links a:hover { border-bottom-color: var(--madera); color: var(--ink); }
+  .actions { display: flex; align-items: center; gap: 8px; }
+  .menu-btn { display: none; border: 0; background: var(--arena); color: var(--cocoa); border-radius: 999px; padding: 10px 16px; font-weight: 600; font-size: 14px; }
+
+  .sheet { position: fixed; inset: 0; z-index: 40; background: var(--wood); color: var(--lino); padding: calc(24px + env(safe-area-inset-top, 0px)) 24px 32px; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+  .sheet[hidden] { display: none; }
+  .sheet-close { position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: 18px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(251,241,229,.14); color: var(--lino); font-size: 18px; }
+  .sheet nav { display: grid; gap: 6px; }
+  .sheet nav a { font-family: var(--display); font-size: clamp(34px, 9vw, 48px); color: var(--lino); text-decoration: none; line-height: 1.15; }
+  .sheet nav a:hover { color: var(--madera); }
+  .sheet .sheet-cta { margin-top: 18px; font-family: var(--ui); font-size: 16px; font-weight: 600; background: var(--madera); color: var(--wood-deep); border-radius: 999px; padding: 14px 22px; justify-self: start; }
+  .sheet p { margin: 0; font-size: 13px; color: rgba(251,241,229,.65); }
+
+  /* Hero: sin marco. El logo se escribe directo sobre la arena de la página. */
+  .hero { display: grid; grid-template-rows: minmax(300px, 44vh) auto; min-height: 100vh; padding: 0 var(--g) 24px; }
+  .write { position: relative; padding-top: 74px; }
+  #heroSand { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .sticker { position: absolute; right: 0; top: clamp(84px, 9vw, 110px); width: 132px; height: 132px; display: grid; place-items: center; transform: rotate(9deg); z-index: 3; }
+  .sticker :global(svg) { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--verde); filter: drop-shadow(0 12px 18px rgba(51,33,26,.25)); }
+  .sticker span { position: relative; font-family: var(--display); font-size: 18px; line-height: 1; text-align: center; color: var(--wood-deep); }
+  .sticker small { display: block; font-family: var(--hand); font-size: 8px; letter-spacing: .14em; margin-top: 6px; }
+  .replay { position: absolute; right: 0; bottom: 10px; z-index: 3; border: 1px solid rgba(90,61,46,.25); background: rgba(251,241,229,.7); color: var(--cocoa); font-family: var(--hand); font-size: 10px; letter-spacing: .18em; border-radius: 999px; padding: 10px 14px; }
+  .replay:hover { background: var(--lino); color: var(--ink); }
+  .hero-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 72px); align-items: center; padding-top: 12px; }
+  h1 { font-family: var(--display); font-weight: 400; margin: 12px 0 16px; font-size: clamp(42px, 5.4vw, 84px); line-height: .94; letter-spacing: -.012em; color: var(--ink); text-wrap: balance; }
+  .lede { font-family: var(--display); font-size: clamp(18px, 1.5vw, 23px); line-height: 1.35; color: var(--cocoa); max-width: 28em; margin: 0 0 22px; }
+  .postales { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: clamp(12px, 1.6vw, 24px); align-items: center; padding: 14px 8px; }
+  .postales figure, .firma-photo, .ig figure, .exp { margin: 0; background: var(--lino); padding: 10px 10px 12px; border-radius: 14px; box-shadow: 0 30px 50px -30px rgba(51,33,26,.65); transform: rotate(var(--rot, 0deg)); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease; }
+  .postales figure:hover, .ig figure:hover, .exp:hover, .firma-photo:hover { transform: rotate(0deg) translateY(-6px); box-shadow: 0 40px 60px -30px rgba(51,33,26,.7); }
+  .postales img, .firma-photo img, .ig img, .exp img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; }
+  .postales figure:first-child img { aspect-ratio: 4 / 3; }
+  .postales figcaption, .firma-photo figcaption { font-family: var(--hand); font-size: 10px; letter-spacing: .18em; color: var(--cocoa); padding: 10px 4px 0; }
+
+  /* Marquee */
+  .marquee { overflow: hidden; padding: 16px 0; border-top: 1px solid rgba(90,61,46,.35); border-bottom: 1px solid rgba(90,61,46,.35); }
+  .track { display: flex; width: max-content; animation: slide 60s linear infinite; }
+  .marquee:hover .track { animation-play-state: paused; }
+  .track span { font-family: var(--hand); font-size: 12px; letter-spacing: .2em; color: var(--cocoa); padding: 0 22px; white-space: nowrap; }
+  .track span::after { content: "✦"; color: var(--madera); margin-left: 44px; font-size: 10px; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* Qué es: tres columnas a lo ancho */
+  .que { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, .7fr); gap: clamp(28px, 4vw, 72px); align-items: start; }
+  .que .intro { margin-bottom: 0; }
+  .klist { list-style: none; margin: 0; padding: 0; align-self: end; }
+  .klist li { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(90,61,46,.35); align-items: baseline; }
+  .klist li:last-child { border-bottom: 1px solid rgba(90,61,46,.35); }
+  .klist .k { font-family: var(--hand); font-size: 11px; letter-spacing: .18em; color: var(--madera-deep); }
+  .klist .v { font-size: 16px; color: var(--ink); }
+  .stats { display: grid; gap: 6px; }
+  .stat { display: grid; gap: 2px; padding: 12px 0; border-top: 1px solid rgba(90,61,46,.35); }
+  .stat:last-child { border-bottom: 1px solid rgba(90,61,46,.35); }
+  .stat b { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(48px, 4.6vw, 76px); line-height: .9; color: var(--madera-deep); }
+  .stat span { font-size: 15px; color: var(--cocoa); }
+
+  /* Experiencias */
+  .exps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 40px); margin-top: 18px; padding: 10px 6px; }
+  .exp { display: grid; align-content: start; }
+  .exp-body { padding: 12px 6px 4px; display: grid; gap: 6px; }
+  .tag { font-family: var(--hand); font-size: 10px; letter-spacing: .18em; color: var(--madera-deep); }
+  .exp h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.05; color: var(--ink); }
+  .exp p { margin: 0; font-size: 14.5px; color: var(--cocoa); }
+
+  /* Bandas de borde a borde */
+  .band { width: 100%; padding: clamp(36px, 5vw, 72px) var(--g); position: relative; overflow: hidden; margin-top: clamp(40px, 6vw, 80px); }
+  .band-in { position: relative; }
+  .wood { background: var(--wood); color: var(--lino); }
+  .wood::before, .foot::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0 2px, transparent 2px 9px); pointer-events: none; }
+  .wood-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3.5vw, 56px); align-items: end; }
+  .on-wood { color: var(--lino); }
+  .on-wood em { color: var(--madera); }
+  .wood-p { margin: 0; font-size: 16px; color: rgba(251,241,229,.85); max-width: 30em; }
+  .wood-item { display: grid; gap: 8px; padding-top: 16px; border-top: 1px solid rgba(251,241,229,.22); }
+  .wood-item .num { font-family: var(--hand); font-size: 10px; letter-spacing: .18em; color: var(--madera); }
+  .wood-item b { font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.05; }
+  .wood-item > span:last-child { font-size: 15px; color: rgba(251,241,229,.8); }
+
+  /* Firma: foto, cita grabada y valores, en tres columnas */
+  .firma { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.3fr) minmax(0, .9fr); gap: clamp(28px, 4vw, 72px); align-items: center; padding-top: clamp(40px, 6vw, 80px); }
+  .carved { margin: 12px 0 0; font-family: var(--display); font-size: clamp(30px, 3.4vw, 56px); line-height: 1.06; color: var(--madera-deep); text-wrap: balance;
+    text-shadow: 1px 1px 0 rgba(255,250,240,.75), -1px -1px 0 rgba(90,61,46,.28); }
+  .carved em { font-style: italic; color: var(--cocoa); }
+  .firma-p { margin: 0 0 18px; font-size: 16px; color: var(--cocoa); }
+  .valores { margin: 0; display: grid; gap: 4px 14px; grid-template-columns: auto 1fr; }
+  .valores dt { font-family: var(--hand); font-size: 10px; letter-spacing: .18em; color: var(--madera-deep); padding-top: 12px; border-top: 1px solid rgba(90,61,46,.3); }
+  .valores dd { margin: 0; font-size: 14.5px; color: var(--ink); padding-top: 10px; border-top: 1px solid rgba(90,61,46,.3); }
+
+  /* Lealtad */
+  .sky { background: var(--cielo); color: var(--ink); }
+  .loyal { display: block; text-decoration: none; padding-block: clamp(22px, 3vw, 36px); transition: filter .3s ease; }
+  .loyal:hover { filter: brightness(1.03); }
+  .loyal-in { display: grid; grid-template-columns: auto minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(18px, 3vw, 48px); align-items: center; }
+  .loyal-stamps { display: grid; grid-template-columns: repeat(8, 26px); gap: 8px; }
+  .loyal-stamps i { width: 26px; height: 26px; border-radius: 50%; background: var(--pizarra); }
+  .loyal-stamps i.on { background: var(--madera-deep); }
+  .loyal-copy b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.1; margin-top: 2px; }
+  .loyal-link { font-size: 15px; color: var(--cocoa); justify-self: end; text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Testimonios */
+  .quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); margin-top: 22px; padding: 6px; }
+  .card { position: relative; margin: 0; background: var(--lino); border-radius: 14px; padding: 26px 24px 22px; box-shadow: 0 30px 50px -30px rgba(51,33,26,.6); transform: rotate(var(--rot, 0deg)); }
+  .card .stamp { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border: 1.5px dashed var(--madera); border-radius: 6px; display: grid; place-items: center; font-family: var(--display); font-size: 13px; color: var(--madera-deep); transform: rotate(8deg); }
+  .card blockquote { margin: 0 0 14px; font-family: var(--display); font-size: 24px; line-height: 1.2; color: var(--ink); padding-right: 36px; }
+  .card figcaption { font-family: var(--hand); font-size: 11px; letter-spacing: .18em; color: var(--madera-deep); }
+
+  /* Visitanos */
+  .visit-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .sky h2 { margin-bottom: 8px; }
+  .sky-p { margin: 0; font-size: 16px; color: var(--cocoa); }
+  .sky-p a { color: var(--madera-deep); text-underline-offset: 4px; }
+  .hours { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 12px 22px; font-size: 15px; align-self: center; }
+  .hours dt { font-family: var(--hand); font-size: 10px; letter-spacing: .16em; color: var(--cocoa); padding-top: 4px; }
+  .hours dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .reserve { display: grid; gap: 12px; }
+  .reserve-p { margin: 0 0 6px; font-family: var(--display); font-size: 26px; color: var(--ink); line-height: 1.15; }
+  .contact { margin: 6px 0 0; font-size: 14px; color: var(--cocoa); }
+  .contact a { color: var(--madera-deep); }
+
+  /* FAQ en dos columnas */
+  .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--g); margin-top: 10px; }
+  .faq details { border-top: 1px solid rgba(90,61,46,.35); padding: 14px 0; }
+  .faq summary { cursor: pointer; list-style: none; font-family: var(--display); font-size: 22px; color: var(--ink); display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-family: var(--display); color: var(--madera-deep); font-size: 26px; line-height: 1; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq p { margin: 10px 0 0; color: var(--cocoa); font-size: 15.5px; max-width: 40em; }
+
+  /* Instagram: seis a lo ancho */
+  .ig { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); margin-top: 18px; padding: 8px; }
+  .ig figure:nth-child(even) { margin-top: 24px; }
+
+  /* Footer */
+  .foot { background: var(--wood); color: var(--lino); padding-bottom: 28px; }
+  .foot-in { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 32px; font-size: 14.5px; }
+  .foot-brand img { height: 64px; width: auto; }
+  .foot-brand p { max-width: 28em; color: rgba(251,241,229,.8); }
+  .foot ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+  .foot p { color: rgba(251,241,229,.8); }
+  .foot a { color: var(--lino); text-decoration: none; }
+  .foot a:hover { color: var(--madera); text-decoration: underline; text-underline-offset: 3px; }
+  .foot-bottom { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding-top: 18px; border-top: 1px solid rgba(251,241,229,.16); font-size: 13px; color: rgba(251,241,229,.6); }
+  .foot-bottom a { color: var(--madera); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .track { animation: none; }
+    .postales figure, .ig figure, .exp, .firma-photo, .loyal { transition: none; }
+  }
+  @media (min-width: 1700px) {
+    h1 { font-size: 96px; }
+  }
+  @media (max-width: 1100px) {
+    .que { grid-template-columns: 1fr 1fr; }
+    .stats { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .stat, .stat:last-child { border-bottom: 0; }
+    .firma { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); }
+    .firma-side { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .wood-grid { grid-template-columns: 1fr 1fr; }
+    .wood-grid > div:first-child { grid-column: 1 / -1; }
+    .visit-grid { grid-template-columns: 1fr 1fr; }
+    .ig { grid-template-columns: repeat(3, 1fr); }
+    .foot-in { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 960px) {
+    .links { display: none; }
+    .menu-btn { display: inline-block; }
+    .topbar { top: 8px; padding-left: 14px; margin-bottom: -70px; }
+    .hero { grid-template-rows: minmax(240px, 38vh) auto; min-height: 0; }
+    .write { padding-top: 64px; }
+    .sticker { top: auto; bottom: -18px; right: 6px; width: 96px; height: 96px; }
+    .sticker span { font-size: 15px; }
+    .replay { display: none; }
+    .hero-row { grid-template-columns: 1fr; }
+    .postales { grid-template-columns: 1fr 1fr; padding-inline: 0; }
+    .postales figure:first-child { grid-column: 1 / -1; }
+    .head-row { grid-template-columns: 1fr; }
+    .head-note { justify-self: start; }
+    .exps, .quotes { grid-template-columns: 1fr 1fr; }
+    .que { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    .firma { grid-template-columns: 1fr; }
+    .firma-side { grid-template-columns: 1fr; }
+    .loyal-in { grid-template-columns: 1fr; }
+    .loyal-link { justify-self: start; }
+    .visit-grid { grid-template-columns: 1fr; }
+    .faq { grid-template-columns: 1fr; }
+    .ig { grid-template-columns: 1fr 1fr; }
+    .foot-in { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .exps, .quotes { grid-template-columns: 1fr; }
+    .klist li { grid-template-columns: 1fr; gap: 4px; }
+    .wood-grid { grid-template-columns: 1fr; }
+    .ig figure:nth-child(even) { margin-top: 0; }
+  }
+</style>

@@ -1,6 +1,6 @@
-# Sandy Garden · Tarjeta de Lealtad digital (demo)
+# Sandy Garden · Propuesta de web y tarjeta de lealtad digital
 
-Demo interactiva para proponerle a Sandy Garden (sensory playground, Costa Rica) una tarjeta de lealtad digital: 8 visitas y la siguiente es gratis, personalizada a nombre de cada familia.
+Propuesta para Sandy Garden (sensory playground, Costa Rica): en `/` el rediseño de su web a todo el ancho, con el logo escribiéndose en la arena; en `/lealtad` la demo interactiva de la tarjeta de lealtad digital (8 visitas y la siguiente es gratis, personalizada a nombre de cada familia).
 
 ## Qué muestra
 
@@ -21,11 +21,12 @@ npm run build      # genera dist/
 
 ## Estructura
 
-- `src/pages/index.astro` arma la página y arranca los scripts.
+- `src/pages/index.astro` la web propuesta (hero con el logo escrito en la arena, `scripts/sandWrite.ts`).
+- `src/pages/lealtad.astro` la demo de la tarjeta de lealtad y arranca sus scripts.
 - `src/components/` Header, Hero (Counter + Phone), HowItWorks, Experience, NextSteps (CTA de xnjaca), RewardOverlay, SandCanvas, Footer.
-- `src/scripts/` `store.ts` (estado y persistencia), `loyalty.ts` (mostrador ↔ tarjeta), `reward.ts` (escena Three.js, se carga bajo demanda), `sand.ts` (fondo), `tilt.ts`.
+- `src/scripts/` `store.ts` (estado y persistencia), `loyalty.ts` (mostrador ↔ tarjeta), `reward.ts` + `sandLogo.ts` (escena Three.js, se carga bajo demanda), `sandWrite.ts` (logo escrito en la arena), `sand.ts` (fondo), `tilt.ts`.
 - `src/data/families.ts` familias de ejemplo y reglas (`META = 8`, `MEDIA = 4`).
-- `public/fonts` LORE y Vintage Rhyme (fuentes de la marca) · `public/img` logos oficiales.
+- `public/fonts` LORE y Vintage Rhyme (fuentes de la marca) · `public/img` logos oficiales · `public/img/site` fotos de sandygarden.com.
 
 ## Marca
 
