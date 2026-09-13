@@ -1,6 +1,6 @@
 import { familiasDemo, META, type Estado, type Tarjeta } from '../data/families';
 
-const KEY = 'sg-lealtad-demo-v2';
+const KEY = 'sg-lealtad-demo-v3';
 
 export let state: Estado = load();
 

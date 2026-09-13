@@ -161,6 +161,23 @@ export function initReward(opts: { onRedeem: () => void }) {
   let textTimer: ReturnType<typeof setTimeout>;
   let scene: Scene | null = null;
   let preview = false;
+  let scrollY = 0;
+
+  function lockPage() {
+    scrollY = window.scrollY;
+    document.body.style.top = `-${scrollY}px`;
+    document.body.classList.add('locked');
+  }
+  function unlockPage() {
+    document.body.classList.remove('locked');
+    document.body.style.top = '';
+    // Volver exactamente a donde estaba, sin el scroll suave de la página.
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    window.scrollTo(0, scrollY);
+    html.style.scrollBehavior = prev;
+  }
 
   function open(t: RewardTexts, isPreview: boolean) {
     preview = isPreview;
@@ -170,7 +187,7 @@ export function initReward(opts: { onRedeem: () => void }) {
     document.getElementById('rRedeem')!.textContent = t.primary;
     (document.getElementById('rLater') as HTMLElement).hidden = !t.showSecondary;
     ov.hidden = false;
-    document.body.classList.add('locked');
+    lockPage();
     text.classList.remove('show');
     clearTimeout(textTimer);
     textTimer = setTimeout(() => text.classList.add('show'), reduced ? 100 : 4300);
@@ -180,7 +197,7 @@ export function initReward(opts: { onRedeem: () => void }) {
   }
   function close() {
     ov.hidden = true;
-    document.body.classList.remove('locked');
+    unlockPage();
     scene?.stop();
     clearTimeout(textTimer);
   }
