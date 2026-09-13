@@ -20,7 +20,10 @@
 
 <style is:global>
   .reward-overlay {
-    position: fixed; inset: 0; z-index: 100; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+    position: fixed; top: 0; left: 0; z-index: 100; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+    /* En móvil la barra del navegador se contrae y el viewport crece: cubrimos siempre el alto máximo. */
+    width: 100%; height: 100vh; height: 100lvh; min-height: -webkit-fill-available;
+    touch-action: none; overscroll-behavior: contain;
     background: linear-gradient(180deg, #bcd6dc 0%, #c7dee2 45%, #e6e3d9 100%); animation: fadeIn .6s ease;
   }
   .reward-overlay[hidden] { display: none; }
@@ -35,8 +38,8 @@
   .reward-overlay .rc3 { top: 8%; --s: 1.7; animation-duration: 120s; animation-delay: -80s; opacity: .8; }
   @keyframes drift { from { transform: translateX(0) scale(var(--s, 1)); } to { transform: translateX(calc(100vw + 520px)) scale(var(--s, 1)); } }
   #rcanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  .rclose { position: absolute; top: 18px; right: 18px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.75); color: var(--ink); font-size: 18px; display: grid; place-items: center; z-index: 3; }
-  .rtext { position: relative; z-index: 2; text-align: center; padding: 0 20px 7vh; max-width: 760px; opacity: 0; transform: translateY(16px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
+  .rclose { position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: 18px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,.75); color: var(--ink); font-size: 18px; display: grid; place-items: center; z-index: 3; }
+  .rtext { position: relative; z-index: 2; text-align: center; padding: 0 20px calc(7svh + env(safe-area-inset-bottom, 0px)); max-width: 760px; opacity: 0; transform: translateY(16px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
   .rtext.show { opacity: 1; transform: none; }
   .rtext .eyebrow { color: var(--madera-deep); }
   .rtext h2 { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 7vw, 88px); line-height: .98; color: var(--ink); margin: 10px 0 12px; letter-spacing: -.012em; text-wrap: balance; }

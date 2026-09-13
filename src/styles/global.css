@@ -37,7 +37,8 @@ body {
   padding-inline: clamp(16px, 4vw, 56px); padding-block: 0 64px;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
-body.locked { overflow: hidden; }
+body.locked { overflow: hidden; touch-action: none; }
+html:has(body.locked) { overflow: hidden; }
 button { font: inherit; cursor: pointer; }
 img { max-width: 100%; }
 :focus-visible { outline: 3px solid var(--cielo-deep); outline-offset: 3px; border-radius: 4px; }

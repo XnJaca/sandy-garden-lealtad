@@ -116,9 +116,11 @@ async function buildScene(canvas: HTMLCanvasElement, logoSrc: string): Promise<S
     scene.add(points);
 
     let halfW = 1, halfH = 1, running = false, t0 = 0;
+    const box = () => { const r = canvas.getBoundingClientRect(); return { w: Math.max(1, Math.round(r.width)), h: Math.max(1, Math.round(r.height)) }; };
     function resize() {
-      renderer.setSize(innerWidth, innerHeight, false);
-      camera.aspect = innerWidth / innerHeight;
+      const { w, h } = box();
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
       halfH = Math.tan((camera.fov * Math.PI) / 360) * camera.position.z;
       halfW = halfH * camera.aspect;
@@ -126,9 +128,11 @@ async function buildScene(canvas: HTMLCanvasElement, logoSrc: string): Promise<S
       points.position.y = halfH * 0.22;
     }
     addEventListener('resize', () => { if (running) resize(); });
+    visualViewport?.addEventListener('resize', () => { if (running) resize(); });
     addEventListener('pointermove', (e) => {
       if (!running) return;
-      const nx = e.clientX / innerWidth, ny = e.clientY / innerHeight;
+      const { w, h } = box();
+      const nx = e.clientX / w, ny = e.clientY / h;
       mat.uniforms.uMouse.value.set((nx * 2 - 1) * halfW, -(ny * 2 - 1) * halfH - points.position.y);
       mat.uniforms.uMouseOn.value = 1;
     }, { passive: true });
