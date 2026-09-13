@@ -1,0 +1,45 @@
+---
+const pasos = [
+  {
+    n: '1', t: 'La familia se registra una sola vez',
+    p: 'Nombre de mamá o papá, WhatsApp y el nombre del peque. Recibe un link y la tarjeta queda en su celular, con su nombre.',
+    q: 'LA FAMILIA · UN MINUTO',
+  },
+  {
+    n: '2', t: 'En cada visita, recepción sella',
+    p: 'La familia muestra su código, recepción sella y el sello aparece en el celular al instante. Solo el equipo puede sellar.',
+    q: 'RECEPCIÓN · CINCO SEGUNDOS',
+  },
+  {
+    n: '3', t: 'A las ocho visitas, la tarjeta celebra',
+    p: 'La pantalla se llena de arena que forma el logo de Sandy Garden, aparece el nombre de la familia y canjean su pase de juego libre.',
+    q: 'AUTOMÁTICO',
+  },
+];
+---
+<section class="block" id="como">
+  <div class="rake"></div>
+  <div class="eyebrow">CÓMO FUNCIONA</div>
+  <h2>Tres pasos. <em>Ninguno</em> le agrega trabajo a recepción.</h2>
+  <p class="intro">La familia se registra una vez. Después, cada visita es mostrar el código y seguir jugando.</p>
+  <div class="steps">
+    {pasos.map((s) => (
+      <div class="step">
+        <div class="num">{s.n}</div>
+        <h3>{s.t}</h3>
+        <p>{s.p}</p>
+        <span class="who-does">{s.q}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .step { display: grid; gap: 10px; align-content: start; padding-top: 18px; border-top: 1px solid rgba(90,61,46,.3); }
+  .num { font-family: var(--display); font-style: italic; font-size: clamp(64px, 7vw, 104px); line-height: .8; color: var(--cielo-deep); margin-bottom: 8px; }
+  h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.1; color: var(--ink); }
+  p { margin: 0; font-size: 15.5px; color: var(--cocoa); }
+  .who-does { font-family: var(--hand); font-size: 10px; letter-spacing: .18em; color: var(--madera-deep); margin-top: 4px; }
+  @media (max-width: 960px) { .steps { grid-template-columns: 1fr; gap: 20px; } }
+</style>

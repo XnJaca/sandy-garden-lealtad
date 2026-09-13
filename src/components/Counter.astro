@@ -1,0 +1,73 @@
+---
+/** Mostrador de recepción: lo que ve el equipo de Sandy Garden. La lógica vive en scripts/loyalty.ts. */
+---
+<div class="counter" aria-labelledby="counter-title">
+  <div class="counter-head">
+    <h2 id="counter-title">MOSTRADOR · RECEPCIÓN</h2>
+    <small>Lo que ve el equipo</small>
+  </div>
+  <div class="counter-body">
+    <div class="field">
+      <label for="cust">FAMILIA EN RECEPCIÓN</label>
+      <select class="control" id="cust"></select>
+    </div>
+    <div class="who" id="who"></div>
+    <div class="row">
+      <button class="btn" id="stampBtn" type="button">Sellar visita de hoy</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" id="undoBtn" type="button">Deshacer</button>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="row">
+      <button class="btn link" id="previewBtn" type="button">Ver la celebración del pase gratis</button>
+    </div>
+    <details class="newcard" id="newcard">
+      <summary>Crear tarjeta para una familia nueva</summary>
+      <div class="grid2">
+        <div class="field">
+          <label for="newName">NOMBRE DE MAMÁ O PAPÁ</label>
+          <input class="control" id="newName" type="text" placeholder="Ej. Carolina Vargas" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="newKids">PEQUE(S)</label>
+          <input class="control" id="newKids" type="text" placeholder="Ej. Isabella, 4 años" autocomplete="off" />
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn" id="createBtn" type="button">Crear y enviar tarjeta</button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="resetBtn" type="button">Reiniciar demo</button>
+      </div>
+    </details>
+  </div>
+</div>
+
+<style is:global>
+  .counter { background: var(--wood); color: var(--lino); border-radius: 22px; max-width: 560px; box-shadow: 0 30px 60px -36px rgba(51,33,26,.7); overflow: hidden; position: relative; }
+  .counter::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0 2px, transparent 2px 9px); pointer-events: none; }
+  .counter-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 18px 24px 14px; border-bottom: 1px solid rgba(251,241,229,.14); position: relative; }
+  .counter-head h2 { margin: 0; font-family: var(--hand); font-size: 13px; letter-spacing: .2em; color: var(--madera); font-weight: 400; }
+  .counter-head small { font-size: 12px; color: rgba(251,241,229,.6); }
+  .counter-body { padding: 20px 24px 24px; display: grid; gap: 16px; position: relative; }
+  .counter .field { display: grid; gap: 7px; }
+  .counter .field label { font-family: var(--hand); font-size: 10px; letter-spacing: .18em; color: rgba(251,241,229,.6); }
+  .counter .control { width: 100%; font: inherit; font-size: 16px; color: var(--lino); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(251,241,229,.22); background: rgba(0,0,0,.22); }
+  .counter .control::placeholder { color: rgba(251,241,229,.4); }
+  .counter .control:focus { border-color: var(--madera); outline: none; box-shadow: 0 0 0 4px rgba(199,153,129,.22); }
+  .counter select.control { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--madera) 50%), linear-gradient(135deg, var(--madera) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
+  .counter select.control option { color: var(--ink); }
+  .counter .who { display: flex; align-items: center; gap: 14px; min-height: 46px; }
+  .counter .who .avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--cielo); display: grid; place-items: center; font-family: var(--display); font-size: 20px; color: var(--madera-deep); flex: none; }
+  .counter .who .name { font-family: var(--display); font-size: 22px; line-height: 1.1; }
+  .counter .who .sub { font-size: 13px; color: rgba(251,241,229,.65); font-variant-numeric: tabular-nums; }
+  .counter .newcard { border-top: 1px solid rgba(251,241,229,.14); padding-top: 16px; display: grid; gap: 12px; }
+  .counter .newcard summary { cursor: pointer; font-weight: 500; color: var(--lino); list-style: none; display: flex; align-items: center; gap: 10px; }
+  .counter .newcard summary::-webkit-details-marker { display: none; }
+  .counter .newcard summary::before { content: "+"; font-size: 20px; line-height: 1; width: 24px; height: 24px; border-radius: 50%; background: var(--madera); display: grid; place-items: center; color: var(--wood-deep); }
+  .counter .newcard[open] summary::before { content: "–"; }
+  .counter .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .counter .toast { font-size: 14px; color: var(--wood-deep); background: var(--cielo); border-radius: 12px; padding: 10px 14px; display: none; }
+  .counter .toast.show { display: block; }
+  .counter .toast.good { background: var(--verde); }
+  @media (max-width: 400px) { .counter .grid2 { grid-template-columns: 1fr; } }
+</style>

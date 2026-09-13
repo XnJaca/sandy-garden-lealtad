@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Experience from '../components/Experience.astro';
+import NextSteps from '../components/NextSteps.astro';
+import Footer from '../components/Footer.astro';
+import RewardOverlay from '../components/RewardOverlay.astro';
+---
+<Layout
+  title="Sandy Garden · Tarjeta de Lealtad digital"
+  description="Demo interactiva de la tarjeta de lealtad digital de Sandy Garden: tarjeta con nombre en el celular, sellado desde recepción, premios e historial."
+>
+  <Header />
+  <Hero />
+  <HowItWorks />
+  <Experience />
+  <NextSteps />
+  <Footer />
+  <RewardOverlay slot="overlay" />
+</Layout>
+
+<script>
+  import { initSand } from '../scripts/sand';
+  import { initTilt } from '../scripts/tilt';
+  import { initLoyalty } from '../scripts/loyalty';
+
+  initSand(document.getElementById('sand') as HTMLCanvasElement, document.getElementById('hintSand'));
+  initTilt(document.getElementById('phoneCol')!, document.getElementById('phone')!);
+  initLoyalty();
+</script>

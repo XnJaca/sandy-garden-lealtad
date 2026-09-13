@@ -1,0 +1,32 @@
+---
+import Counter from './Counter.astro';
+import Phone from './Phone.astro';
+---
+<section class="hero">
+  <div class="eyebrow">PARA LAS FAMILIAS QUE VUELVEN A SANDY GARDEN</div>
+  <h1>La tarjeta de lealtad <em>que vive en el celular</em> de cada familia.</h1>
+
+  <div class="hero-row">
+    <div>
+      <p class="lede">Cada visita suma un sello en el celular de la familia, <b>con su nombre y el de su peque</b>. A la octava, el juego libre va por cuenta de Sandy Garden.</p>
+      <Counter />
+    </div>
+    <Phone />
+  </div>
+</section>
+
+<style>
+  .hero { padding-block: clamp(28px, 5vw, 64px) 0; }
+  h1 {
+    font-family: var(--display); font-weight: 400; margin: 12px 0 0;
+    font-size: clamp(46px, 8.6vw, 128px); line-height: .94; letter-spacing: -.012em; color: var(--ink); text-wrap: balance;
+  }
+  h1 em { font-style: italic; color: var(--madera-deep); }
+  .hero-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(24px, 5vw, 80px); align-items: start; margin-top: clamp(24px, 4vw, 56px); }
+  .lede { font-family: var(--display); font-size: clamp(20px, 2.1vw, 27px); line-height: 1.32; color: var(--cocoa); max-width: 24em; margin: 0 0 28px; }
+  .lede b { font-weight: 400; color: var(--ink); border-bottom: 2px solid var(--madera); }
+  @media (max-width: 960px) {
+    .hero-row { grid-template-columns: 1fr; }
+    .hero-row > :global(.phone-col) { order: -1; }
+  }
+</style>

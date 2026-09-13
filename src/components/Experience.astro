@@ -1,0 +1,59 @@
+---
+/** La experiencia, contada desde la familia y desde el equipo. A la izquierda, el aviso de WhatsApp que llega cuando falta una visita. */
+const momentos = [
+  { k: 'SU NOMBRE', v: 'Valeria abre la tarjeta y ve su nombre y el de Emma. Es de ellas, y en recepción no hace falta preguntar nada.' },
+  { k: 'EL SELLO', v: 'Muestran el código, recepción sella, y el sello salta en la pantalla antes de que guarden el celular.' },
+  { k: 'EL AVISO', v: 'Cuando falta una visita, llega un mensaje por WhatsApp. Es la razón para volver esta semana y no el mes que viene.' },
+  { k: 'LA CELEBRACIÓN', v: 'A las ocho, la pantalla se llena de arena y aparece su nombre. Un momento que dan ganas de grabar y compartir.' },
+  { k: 'LO QUE USTEDES VEN', v: 'Quién vuelve, cada cuánto y quién está a un sello del premio. Y los premios se cambian cuando quieran: café, juego libre, cumpleaños.' },
+];
+---
+<section class="block" id="experiencia">
+  <div class="rake"></div>
+  <div class="eyebrow">LA EXPERIENCIA</div>
+  <h2>Con el mismo cuidado <em>que ponen en cada detalle del lugar.</em></h2>
+  <div class="why">
+    <figure class="chat" aria-label="Ejemplo del mensaje de WhatsApp que recibe la familia">
+      <div class="chat-head">
+        <img src="/img/mono-madera.png" alt="" width="44" height="30" />
+        <div><b>Sandy Garden</b><span>sensory playground</span></div>
+      </div>
+      <div class="bubble">
+        <p>Hola Valeria 👋 Tu tarjeta de lealtad ya está lista, con tu nombre y el de Emma. Guardala en el celular y mostrala en recepción cada visita.</p>
+        <a>sandygarden.com/lealtad/sg-1042</a>
+        <time>14 ago · 10:24 a. m.</time>
+      </div>
+      <div class="bubble">
+        <p>Valeria, Emma ya lleva 7 visitas 🏖️ La próxima les regala un pase de juego libre. ¿Las vemos esta semana?</p>
+        <time>hoy · 9:05 a. m.</time>
+      </div>
+      <figcaption>El aviso que llega cuando falta una visita.</figcaption>
+    </figure>
+    <ul class="why-list">
+      {momentos.map((m) => (
+        <li><span class="k">{m.k}</span><span class="v">{m.v}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .chat { margin: 0; position: relative; display: grid; gap: 12px; padding: 22px; max-width: 440px; background: var(--lino); border-radius: 22px; box-shadow: 0 30px 50px -30px rgba(51,33,26,.55); transform: rotate(-2deg); }
+  .chat-head { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(90,61,46,.15); }
+  .chat-head img { height: 30px; width: auto; }
+  .chat-head b { display: block; font-family: var(--display); font-weight: 400; font-size: 18px; color: var(--ink); line-height: 1.1; }
+  .chat-head span { font-family: var(--hand); font-size: 9px; letter-spacing: .16em; color: var(--cocoa-soft); }
+  .bubble { background: var(--cielo); border-radius: 16px 16px 16px 4px; padding: 12px 14px 8px; max-width: 92%; display: grid; gap: 6px; }
+  .bubble p { margin: 0; font-size: 15px; line-height: 1.4; color: var(--ink); }
+  .bubble a { font-size: 14px; color: var(--madera-deep); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .bubble time { font-size: 11px; color: var(--cocoa-soft); justify-self: end; }
+  figcaption { font-family: var(--display); font-style: italic; font-size: 16px; color: var(--cocoa-soft); padding-top: 4px; }
+  .why-list { margin: 0; padding: 0; list-style: none; display: grid; }
+  .why-list li { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid rgba(90,61,46,.3); align-items: baseline; }
+  .why-list li:last-child { border-bottom: 1px solid rgba(90,61,46,.3); }
+  .k { font-family: var(--hand); font-size: 10px; letter-spacing: .18em; color: var(--madera-deep); }
+  .v { font-size: 16px; color: var(--ink); }
+  @media (max-width: 960px) { .why { grid-template-columns: 1fr; } .chat { transform: none; } }
+  @media (max-width: 400px) { .why-list li { grid-template-columns: 1fr; gap: 4px; } }
+</style>

@@ -1,0 +1,24 @@
+---
+---
+<header class="top">
+  <div class="brand">
+    <img src="/img/mono-madera.png" alt="Monograma Sandy Garden" width="60" height="40" />
+    <span>TARJETA DE LEALTAD</span>
+  </div>
+  <div class="right">
+    <span class="hint-sand" id="hintSand">Pasá el cursor por la arena.</span>
+    <a class="pill" href="#hablemos">PROPUESTA DE XNJACA</a>
+  </div>
+</header>
+
+<style>
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px 0; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand img { height: 40px; width: auto; display: block; }
+  .brand span { font-family: var(--hand); font-size: 12px; letter-spacing: .18em; color: var(--cocoa); }
+  .right { display: flex; align-items: center; gap: 14px; }
+  .pill { font-family: var(--hand); font-size: 11px; letter-spacing: .16em; color: var(--lino); background: var(--wood); border-radius: 999px; padding: 8px 14px; white-space: nowrap; text-decoration: none; }
+  .pill:hover { background: var(--wood-deep); }
+  .hint-sand { font-size: 15px; color: var(--cocoa-soft); font-style: italic; font-family: var(--display); }
+  @media (max-width: 960px) { .hint-sand { display: none; } }
+</style>

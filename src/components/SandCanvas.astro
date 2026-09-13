@@ -1,0 +1,8 @@
+---
+/** Lienzo fijo detrás de todo: la arena que se raya con el cursor. Se inicializa desde index.astro. */
+---
+<canvas id="sand" aria-hidden="true"></canvas>
+
+<style>
+  #sand { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+</style>

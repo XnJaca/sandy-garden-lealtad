@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+import SandCanvas from '../components/SandCanvas.astro';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="es-CR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" />
+    <link rel="preload" href="/fonts/VintageRhyme-Regular.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="/fonts/LORE.ttf" as="font" type="font/ttf" crossorigin />
+  </head>
+  <body>
+    <SandCanvas />
+    <div class="wrap">
+      <slot />
+    </div>
+    <slot name="overlay" />
+  </body>
+</html>
